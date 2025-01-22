@@ -49,12 +49,9 @@ func TestMain(m *testing.M) {
 	dbConfig = config.DatabaseConfiguration{
 		Type:           "mysql",
 		Endpoint:       endpoint,
-		ReadEndpoint:   endpoint,
 		Name:           "sampledb",
 		User:           "catalog_user",
 		Password:       "unittest123",
-		Migrate:        true,
-		MigrationsPath: "../db/migrations",
 		ConnectTimeout: 5,
 	}
 
@@ -83,7 +80,7 @@ func router() *gin.Engine {
 		log.Fatalln("Error creating controller", err)
 	}
 
-	catalog := router.Group("/catalogue")
+	catalog := router.Group("/catalog")
 
 	catalog.GET("", c.GetProducts)
 

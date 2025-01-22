@@ -5,9 +5,9 @@ This is a sample application designed to illustrate various concepts related to 
 It provides:
 
 - A distributed component architecture in various languages and frameworks
-- Utilization of a variety of different persistence backends for different components like MySQL, DynamoDB and Redis
+- Utilization of a variety of different persistence backends for different components like MariaDB (or MySQL), DynamoDB and Redis
 - The ability to run in various container orchestration technologies like Docker Compose, Kubernetes etc.
-- Pre-built containers image for both x86-64 and ARM64 CPU architectures
+- Pre-built container images for both x86-64 and ARM64 CPU architectures
 - All components instrumented for Prometheus metrics and OpenTelemetry OTLP tracing
 - Support for Istio on Kubernetes
 - Load generator which exercises all of the infrastructure
@@ -147,4 +147,5 @@ DEPENDENCIES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, EVEN
 IF AMAZON HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. THESE LIMITATIONS
 AND DISCLAIMERS APPLY EXCEPT TO THE EXTENT PROHIBITED BY APPLICABLE LAW.
 
+MariaDB Community License - [LICENSE](https://mariadb.com/kb/en/mariadb-licenses/)
 MySQL Community Edition - [LICENSE](https://github.com/mysql/mysql-server/blob/8.0/LICENSE)
