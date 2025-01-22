@@ -6,9 +6,8 @@
   "release-as": "1.0.0",
   "extra-files": [
     {
-      "type": "yaml1",
-      "path": "src/ui/chart/Chart.yaml",
-      "glob": true,
+      "type": "yaml",
+      "path": "src/ui/chart/Chart.yaml1",
       "jsonpath": "$.version"
     }
   ],
