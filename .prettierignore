@@ -9,3 +9,5 @@ go.mod
 go.sum
 /.nx/cache
 /.nx/workspace-data
+.devcontainer.json
+.release-please-manifest.json
