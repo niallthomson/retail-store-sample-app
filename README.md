@@ -18,7 +18,7 @@ It provides:
 
 ## Application Architecture
 
-The application has been deliberately over-engineered to generate multiple de-coupled components. These components generally have different infrastructure dependencies, and may support multiple "backends" (example: carts service supports MongoDB or DynamoDB).
+The application has been deliberately over-engineered to generate multiple de-coupled components. These components generally have different infrastructure dependencies, and may support multiple "backends" (example: Carts service supports MongoDB or DynamoDB).
 
 ![Architecture](/docs/images/architecture.png)
 
