@@ -39,13 +39,15 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: "Setup Env"
         uses: ./.github/actions/setup-env
       - name: Global
         shell: devenv shell bash -- -e {0}
         run: |
-          yarn nx affected --targets=lint,test:e2e,test,build --base ${{ github.event.pull_request.base.sha }} --head ${{ github.event.pull_request.head.sha }}
+          yarn nx affected --targets=lint,test:e2e,test,build --base origin/main
       - name: Containers
         shell: devenv shell bash -- -e {0}
         run: |
-          yarn nx affected --targets=container --exclude='*,!tag:container' --base ${{ github.event.pull_request.base.sha }} --head ${{ github.event.pull_request.head.sha }}
+          yarn nx affected --targets=container --exclude='*,!tag:container' --base origin/main
