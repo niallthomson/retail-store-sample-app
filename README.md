@@ -97,7 +97,7 @@ aws ecr-public get-login-password --region us-east-1 | docker login --username A
 Use `docker compose` to run the application containers:
 
 ```
-MYSQL_PASSWORD='<some password>' docker compose --file docker-compose.yml up
+DB_PASSWORD='<some password>' docker compose --file docker-compose.yml up
 ```
 
 Open the frontend in a browser window:

@@ -3,7 +3,7 @@
 {
   packages = [ 
     pkgs.jq
-    pkgs.yq
+    pkgs.yq-go
     pkgs.pre-commit
     pkgs.kubectl
     pkgs.kind

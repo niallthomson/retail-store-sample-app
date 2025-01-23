@@ -51,7 +51,7 @@ curl localhost:8080/catalogue
 A `docker-compose.yml` file is included to run the service in Docker, including a MySQL database:
 
 ```
-MYSQL_PASSWORD="testing" docker compose up
+DB_PASSWORD="testing" docker compose up
 ```
 
 Test access:

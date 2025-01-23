@@ -22,7 +22,7 @@ jobs:
       - name: Compose up
         shell: devenv shell bash -- -e {0}
         run: |
-          MYSQL_PASSWORD='test123' yarn nx compose:up
+          DB_PASSWORD='test123' yarn nx compose:up
       - name: Test
         shell: devenv shell bash -- -e {0}
         run: |
@@ -30,7 +30,7 @@ jobs:
       - name: Compose down
         shell: devenv shell bash -- -e {0}
         run: |
-          MYSQL_PASSWORD='test123' yarn nx compose:up
+          DB_PASSWORD='test123' yarn nx compose:up
 
   kubernetes:
     name: Kubernetes E2E Tests
