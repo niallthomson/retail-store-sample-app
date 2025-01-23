@@ -44,7 +44,6 @@
     },
     "container": {
       "executor": "@nx-tools/nx-container:build",
-      "dependsOn": ["build"],
       "cache": true,
       "options": {
         "context": "{projectRoot}",
