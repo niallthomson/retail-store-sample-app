@@ -43,10 +43,14 @@ jobs:
           fetch-depth: 0
       - name: "Setup Env"
         uses: ./.github/actions/setup-env
-      - name: Global
+      - name: Build
         shell: devenv shell bash -- -e {0}
         run: |
-          yarn nx affected --targets=lint,test:e2e,test,build --base origin/main
+          yarn nx affected --targets=build --base origin/main --parallel 1
+      - name: Other tasks
+        shell: devenv shell bash -- -e {0}
+        run: |
+          yarn nx affected --targets=lint,test:e2e,test --base origin/main
       - name: Containers
         shell: devenv shell bash -- -e {0}
         run: |
