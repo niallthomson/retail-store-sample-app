@@ -30,8 +30,8 @@ import org.testcontainers.utility.DockerImageName;
 
 @SpringBootTest(
   properties = {
-    "retail.carts.persistence.provider=dynamodb",
-    "retail.carts.persistence.dynamodb.createTable=true",
+    "retail.cart.persistence.provider=dynamodb",
+    "retail.cart.persistence.dynamodb.createTable=true",
   }
 )
 @Testcontainers
@@ -45,7 +45,7 @@ public class DynamoDBCartServiceIntegrationTest extends AbstractServiceTests {
 
   @DynamicPropertySource
   static void dynamoDbProperties(DynamicPropertyRegistry registry) {
-    registry.add("retail.carts.persistence.dynamodb.endpoint", () ->
+    registry.add("retail.cart.persistence.dynamodb.endpoint", () ->
       String.format(
         "http://%s:%d",
         dynamodbContainer.getHost(),

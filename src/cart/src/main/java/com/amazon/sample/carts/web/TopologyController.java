@@ -36,7 +36,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class TopologyController {
 
-  @Value("${retail.carts.persistence.provider}")
+  @Value("${retail.cart.persistence.provider}")
   private String persistenceProvider;
 
   @Autowired(required = false)

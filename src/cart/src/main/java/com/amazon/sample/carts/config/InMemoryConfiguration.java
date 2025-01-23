@@ -27,7 +27,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ConditionalOnProperty(
-  prefix = "retail.carts.persistence",
+  prefix = "retail.cart.persistence",
   name = "provider",
   havingValue = "in-memory"
 )

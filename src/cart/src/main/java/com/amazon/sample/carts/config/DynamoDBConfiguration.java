@@ -33,7 +33,7 @@ import software.amazon.awssdk.services.dynamodb.DynamoDbClientBuilder;
 
 @Configuration
 @ConditionalOnProperty(
-  prefix = "retail.carts.persistence",
+  prefix = "retail.cart.persistence",
   name = "provider",
   havingValue = "dynamodb"
 )
