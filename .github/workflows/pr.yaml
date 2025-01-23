@@ -48,4 +48,4 @@ jobs:
       - name: Containers
         shell: devenv shell bash -- -e {0}
         run: |
-          yarn nx affected --targets=container --exclude='*,!tag:container'
+          yarn nx affected --targets=container --exclude='*,!tag:container' --base ${{ github.event.pull_request.base.sha }} --head ${{ github.event.pull_request.head.sha }}
