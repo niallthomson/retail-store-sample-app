@@ -1114,20 +1114,6 @@
     semver "^7.6.0"
     tmp "^0.2.3"
 
-"@nx/devkit@20.3.1":
-  version "20.3.1"
-  resolved "https://registry.yarnpkg.com/@nx/devkit/-/devkit-20.3.1.tgz#f8592e5a34c9cefcbd28dd5f5aa00a6eea01fd1f"
-  integrity sha512-Z6VdBg5GRu2Vg9FpeQJY+zQ1TvBoMWk8cTCZOf8J6myjoWYbksRfpWfNIvEk9OUsEMhpg98vxH2Cc8JR1zfiew==
-  dependencies:
-    ejs "^3.1.7"
-    enquirer "~2.3.6"
-    ignore "^5.0.4"
-    minimatch "9.0.3"
-    semver "^7.5.3"
-    tmp "~0.2.1"
-    tslib "^2.3.0"
-    yargs-parser "21.1.1"
-
 "@nx/devkit@20.3.2", "@nx/devkit@>= 17 < 21", "@nx/devkit@^20.0.0":
   version "20.3.2"
   resolved "https://registry.yarnpkg.com/@nx/devkit/-/devkit-20.3.2.tgz#b16e66771dd7dd24670eafa060c01f8af1191645"

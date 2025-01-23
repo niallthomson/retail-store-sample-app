@@ -13,7 +13,7 @@
     "@nx-extensions/helm": "^1.0.0",
     "@nx-go/nx-go": "^3.3.1",
     "@nx-tools/nx-container": "^6.2.0",
-    "@nx/devkit": "20.3.1",
+    "@nx/devkit": "20.3.2",
     "@nx/js": "^20.3.1",
     "@prettier/plugin-xml": "^3.4.1",
     "@swc/helpers": "^0.5.15",
