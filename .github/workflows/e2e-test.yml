@@ -23,6 +23,7 @@ jobs:
         shell: devenv shell bash -- -e {0}
         run: |
           DB_PASSWORD='test123' yarn nx compose:up
+          sleep 60
       - name: Test
         shell: devenv shell bash -- -e {0}
         run: |
