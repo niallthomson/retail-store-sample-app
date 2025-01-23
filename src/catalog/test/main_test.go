@@ -101,7 +101,7 @@ func prepareContainer(ctx context.Context) (testcontainers.Container, string, er
 			"MYSQL_ALLOW_EMPTY_PASSWORD": "true",
 			"MYSQL_DATABASE":             "sampledb",
 			"MYSQL_USER":                 "catalog_user",
-			"DB_PASSWORD":                "unittest123",
+			"MYSQL_PASSWORD":             "unittest123",
 		},
 	}
 
