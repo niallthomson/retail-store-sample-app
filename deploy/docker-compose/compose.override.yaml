@@ -9,7 +9,7 @@ services:
       - RETAIL_UI_ENDPOINTS_CHECKOUT=http://checkout:8080
   catalog:
     ports: !override []
-  carts:
+  cart:
     ports: !override []
   orders:
     ports: !override []
