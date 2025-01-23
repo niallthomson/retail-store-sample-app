@@ -44,7 +44,7 @@ jobs:
       - name: Global
         shell: devenv shell bash -- -e {0}
         run: |
-          yarn nx affected --targets=lint,test:e2e,test,build
+          yarn nx affected --targets=lint,test:e2e,test,build --base ${{ github.event.pull_request.base.sha }} --head ${{ github.event.pull_request.head.sha }}
       - name: Containers
         shell: devenv shell bash -- -e {0}
         run: |
