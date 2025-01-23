@@ -3,7 +3,8 @@
   "extends": [
     "config:recommended",
     ":rebaseStalePrs",
-    ":automergeStableNonMajor"
+    ":automergeStableNonMajor",
+    ":semanticCommitTypeAll(chore)"
   ],
   "schedule": ["on the first day of the month"],
   "enabledManagers": ["github-actions", "terraform", "npm", "maven", "gomod"],
