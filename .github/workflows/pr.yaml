@@ -50,7 +50,7 @@ jobs:
       - name: Other tasks
         shell: devenv shell bash -- -e {0}
         run: |
-          yarn nx affected --targets=lint,test:e2e,test --base origin/main
+          yarn nx affected --targets=lint,test:integration,test --base origin/main
       - name: Containers
         shell: devenv shell bash -- -e {0}
         run: |

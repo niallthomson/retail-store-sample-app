@@ -23,7 +23,7 @@
         "command": "./mvnw test -DexcludedGroups=integration"
       }
     },
-    "test:e2e": {
+    "test:integration": {
       "executor": "nx:run-commands",
       "dependsOn": ["test"],
       "cache": true,

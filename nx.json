@@ -24,7 +24,7 @@
         "cwd": "{projectRoot}"
       }
     },
-    "test:e2e": {
+    "test:integration": {
       "executor": "nx:run-commands",
       "options": {
         "cwd": "{projectRoot}"

@@ -16,7 +16,7 @@
     "test": {
       "dependsOn": ["build"]
     },
-    "test:e2e": {
+    "test:integration": {
       "dependsOn": ["test"]
     },
     "lint": {
