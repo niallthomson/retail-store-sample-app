@@ -9,7 +9,7 @@ import (
 //go:embed products.json
 var productsString []byte
 
-//go:embed products.json
+//go:embed tags.json
 var tagsString []byte
 
 type ProductData struct {

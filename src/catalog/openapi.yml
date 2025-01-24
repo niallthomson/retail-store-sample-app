@@ -200,7 +200,7 @@ components:
           type: string
         price:
           type: integer
-        tag:
+        tags:
           type: array
           items:
             "$ref": "#/components/schemas/model.Tag"

@@ -69,11 +69,11 @@ public class MockCartsService implements CartsService {
   }
 
   @Override
-  public Mono<Void> addItem(String sessionId, String productId) {
+  public Mono<Void> addItem(String sessionId, String productId, int quantity) {
     Cart cart = getOrCreate(sessionId);
 
     return this.catalogService.getProduct(productId)
-      .map(p -> new CartItem(productId, 1, p.getPrice(), p.getName()))
+      .map(p -> new CartItem(productId, quantity, p.getPrice(), p.getName()))
       .doOnNext(i -> cart.addItem(i))
       .then();
   }

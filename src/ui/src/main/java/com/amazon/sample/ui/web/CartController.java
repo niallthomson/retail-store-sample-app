@@ -63,7 +63,8 @@ public class CartController {
 
     return this.cartsService.addItem(
         sessionId,
-        addRequest.getProductId()
+        addRequest.getProductId(),
+        addRequest.getQuantity()
       ).thenReturn("redirect:/cart");
   }
 

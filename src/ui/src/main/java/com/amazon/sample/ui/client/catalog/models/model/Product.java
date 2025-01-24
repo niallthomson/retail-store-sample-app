@@ -32,9 +32,9 @@ public class Product implements AdditionalDataHolder, Parsable {
    */
   private Integer price;
   /**
-   * The tag property
+   * The tags property
    */
-  private java.util.List<Tag> tag;
+  private java.util.List<Tag> tags;
 
   /**
    * Instantiates a new {@link Product} and sets the default values.
@@ -102,8 +102,8 @@ public class Product implements AdditionalDataHolder, Parsable {
     deserializerMap.put("price", n -> {
       this.setPrice(n.getIntegerValue());
     });
-    deserializerMap.put("tag", n -> {
-      this.setTag(
+    deserializerMap.put("tags", n -> {
+      this.setTags(
           n.getCollectionOfObjectValues(Tag::createFromDiscriminatorValue)
         );
     });
@@ -138,12 +138,12 @@ public class Product implements AdditionalDataHolder, Parsable {
   }
 
   /**
-   * Gets the tag property value. The tag property
+   * Gets the tags property value. The tags property
    * @return a {@link java.util.List<Tag>}
    */
   @jakarta.annotation.Nullable
-  public java.util.List<Tag> getTag() {
-    return this.tag;
+  public java.util.List<Tag> getTags() {
+    return this.tags;
   }
 
   /**
@@ -158,7 +158,7 @@ public class Product implements AdditionalDataHolder, Parsable {
     writer.writeStringValue("id", this.getId());
     writer.writeStringValue("name", this.getName());
     writer.writeIntegerValue("price", this.getPrice());
-    writer.writeCollectionOfObjectValues("tag", this.getTag());
+    writer.writeCollectionOfObjectValues("tags", this.getTags());
     writer.writeAdditionalData(this.getAdditionalData());
   }
 
@@ -205,12 +205,12 @@ public class Product implements AdditionalDataHolder, Parsable {
   }
 
   /**
-   * Sets the tag property value. The tag property
-   * @param value Value to set for the tag property.
+   * Sets the tags property value. The tags property
+   * @param value Value to set for the tags property.
    */
-  public void setTag(
+  public void setTags(
     @jakarta.annotation.Nullable final java.util.List<Tag> value
   ) {
-    this.tag = value;
+    this.tags = value;
   }
 }

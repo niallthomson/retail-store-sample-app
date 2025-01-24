@@ -24,4 +24,6 @@ import lombok.Data;
 public class CartChangeRequest {
 
   private String productId;
+
+  private int quantity = 1;
 }

@@ -56,12 +56,12 @@ public class KiotaCartsService implements CartsService {
   }
 
   @Override
-  public Mono<Void> addItem(String sessionId, String productId) {
+  public Mono<Void> addItem(String sessionId, String productId, int quantity) {
     return this.catalogService.getProduct(productId)
       .map(p -> {
         var item = new Item();
         item.setItemId(p.getId());
-        item.setQuantity(1);
+        item.setQuantity(quantity);
         item.setUnitPrice(p.getPrice());
 
         return item;

@@ -26,7 +26,7 @@ public interface CartsService {
 
   Mono<Cart> deleteCart(String sessionId);
 
-  Mono<Void> addItem(String sessionId, String productId);
+  Mono<Void> addItem(String sessionId, String productId, int quantity);
 
   Mono<Void> removeItem(String sessionId, String productId);
 }
