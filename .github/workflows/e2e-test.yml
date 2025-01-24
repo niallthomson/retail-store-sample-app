@@ -27,7 +27,7 @@ jobs:
       - name: Test
         shell: devenv shell bash -- -e {0}
         run: |
-          CYPRESS_BASE_URL='http://localhost:8888' yarn nx test e2e
+          bash scripts/e2e-kind.sh
       - name: Compose down
         shell: devenv shell bash -- -e {0}
         run: |

@@ -4,7 +4,7 @@
   "description": "TODO",
   "main": "conf.js",
   "scripts": {
-    "run": "cypress run"
+    "execute": "cypress run"
   },
   "keywords": [],
   "author": "",

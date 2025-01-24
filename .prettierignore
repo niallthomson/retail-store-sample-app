@@ -11,3 +11,4 @@ go.sum
 /.nx/workspace-data
 .devcontainer.json
 .release-please-manifest.json
+src/ui/src/main/java/com/amazon/sample/ui/client/**/*.java
