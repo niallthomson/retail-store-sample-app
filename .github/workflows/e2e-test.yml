@@ -27,7 +27,7 @@ jobs:
       - name: Test
         shell: devenv shell bash -- -e {0}
         run: |
-          bash scripts/e2e-kind.sh
+          bash scripts/e2e-compose.sh
       - name: Compose down
         shell: devenv shell bash -- -e {0}
         run: |
