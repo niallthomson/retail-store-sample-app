@@ -2,7 +2,7 @@ module github.com/aws-containers/retail-store-sample-app/catalog
 
 go 1.22.0
 
-toolchain go1.23.3
+toolchain go1.23.5
 
 require (
 	github.com/gin-gonic/gin v1.10.0
@@ -13,6 +13,7 @@ require (
 	github.com/zsais/go-gin-prometheus v0.1.0
 	go.opentelemetry.io/contrib/detectors/aws/ec2 v1.34.0
 	go.opentelemetry.io/otel v1.34.0
+	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.34.0
 	go.opentelemetry.io/otel/sdk v1.34.0
 	gorm.io/driver/mysql v1.5.7
 	gorm.io/driver/sqlite v1.5.7
@@ -72,7 +73,6 @@ require (
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/yusufpapurcu/wmi v1.2.3 // indirect
 	go.opentelemetry.io/auto/sdk v1.1.0 // indirect
-	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.34.0 // indirect
 	go.opentelemetry.io/otel/metric v1.34.0 // indirect
 	go.opentelemetry.io/otel/trace v1.34.0 // indirect
 	go.opentelemetry.io/proto/otlp v1.5.0 // indirect
