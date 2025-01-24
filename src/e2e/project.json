@@ -9,7 +9,7 @@
         "command": "cd src/e2e && yarn install"
       }
     },
-    "test": {
+    "execute": {
       "dependsOn": ["install"]
     }
   },
