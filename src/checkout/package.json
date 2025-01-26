@@ -61,7 +61,7 @@
     "source-map-support": "^0.5.20",
     "supertest": "^6.3.3",
     "testcontainers": "^10.16.0",
-    "ts-jest": "28.0.5",
+    "ts-jest": "28.0.8",
     "ts-loader": "^9.4.2",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "4.2.0",
