@@ -32,7 +32,7 @@ import software.amazon.awssdk.services.sqs.SqsAsyncClient;
 
 @Configuration
 @ConditionalOnProperty(
-  prefix = "retail.orders.messaging",
+  prefix = MessagingProperties.PREFIX,
   name = "provider",
   havingValue = "sqs"
 )
