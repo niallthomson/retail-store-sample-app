@@ -45,7 +45,7 @@ import org.springframework.messaging.handler.annotation.support.MessageHandlerMe
 @Slf4j
 @EnableConfigurationProperties(RabbitMQProperties.class)
 @ConditionalOnProperty(
-  prefix = "retail.orders.messaging",
+  prefix = RabbitMQProperties.PREFIX,
   name = "provider",
   havingValue = "rabbitmq"
 )

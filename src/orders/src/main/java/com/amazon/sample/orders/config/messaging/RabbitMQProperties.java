@@ -24,11 +24,13 @@ import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.validation.annotation.Validated;
 
-@ConfigurationProperties(prefix = "retail.orders.messaging.rabbitmq")
+@ConfigurationProperties(prefix = RabbitMQProperties.PREFIX)
 @Validated
 @Getter
 @Setter
 public class RabbitMQProperties {
+
+  public static final String PREFIX = "retail.orders.messaging.rabbitmq";
 
   private List<String> addresses;
 

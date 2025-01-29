@@ -18,31 +18,46 @@
 
 package com.amazon.sample.ui.config.chat;
 
-import org.springframework.ai.model.function.FunctionCallingOptions;
-import org.springframework.beans.factory.annotation.Value;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.openai.OpenAiChatModel;
+import org.springframework.ai.openai.OpenAiChatOptions;
+import org.springframework.ai.openai.api.OpenAiApi;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ConditionalOnProperty(prefix = "retail.ui.chat", name = "enabled")
-public class ChatOptionsConfig {
-
-  @Value("${retail.ui.chat.model}")
-  private String model;
-
-  @Value("${retail.ui.chat.temperature}")
-  private double temperature;
-
-  @Value("${retail.ui.chat.maxTokens}")
-  private int maxTokens;
+@Slf4j
+@ConditionalOnBean(ChatProperties.class)
+@ConditionalOnProperty(
+  prefix = ChatProperties.PREFIX,
+  name = "provider",
+  havingValue = "openai"
+)
+public class OpenAIChatConfig {
 
   @Bean
-  public FunctionCallingOptions options() {
-    return FunctionCallingOptions.builder()
-      .model(this.model)
-      .temperature(this.temperature)
-      .maxTokens(this.maxTokens)
+  public ChatClient chatClient(
+    ChatProperties properties,
+    OpenAIChatProperties openaiProperties
+  ) {
+    log.warn("Creating OpenAI chat client");
+
+    var modelOptions = OpenAiChatOptions.builder()
+      .model(properties.getModel())
+      .temperature(properties.getTemperature())
+      .maxTokens(properties.getMaxTokens())
       .build();
+
+    var chatModel = new OpenAiChatModel(
+      new OpenAiApi(
+        openaiProperties.getBaseUrl(),
+        openaiProperties.getApiKey()
+      ),
+      modelOptions
+    );
+    return ChatClient.create(chatModel);
   }
 }

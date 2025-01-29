@@ -34,6 +34,6 @@ services:
       - reschedule=on-node-failure
       - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
       - MYSQL_ALLOW_EMPTY_PASSWORD=true
-      - MYSQL_DATABASE=sampledb
+      - MYSQL_DATABASE=catalogdb
       - MYSQL_USER=catalog_user
       - MYSQL_PASSWORD=${DB_PASSWORD}

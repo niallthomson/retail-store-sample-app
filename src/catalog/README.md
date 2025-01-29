@@ -10,15 +10,15 @@ This service provides an API for retrieving product catalog information. Data is
 
 The following environment variables are available for configuring the service:
 
-| Name               | Description                                     | Default        |
-| ------------------ | ----------------------------------------------- | -------------- |
-| PORT               | The port which the server will listen on        | `8080`         |
-| DB_TYPE            | Type of database (`in-memory` or `mysql`)       | `in-memory`    |
-| DB_ENDPOINT        | The endpoint of the MySQL database              |                |
-| DB_NAME            | The name of the database to connect to          | `sampledb`     |
-| DB_USER            | The username for authenticating to the database | `catalog_user` |
-| DB_PASSWORD        | The password for authenticating to the database |                |
-| DB_CONNECT_TIMEOUT | Database connection timeout in seconds          | `5`            |
+| Name                                       | Description                                                     | Default        |
+| ------------------------------------------ | --------------------------------------------------------------- | -------------- |
+| PORT                                       | The port which the server will listen on                        | `8080`         |
+| RETAIL_CATALOG_PERSISTENCE_PROVIDER        | The persistence provider to use, can be `in-memory` or `mysql`. | `in-memory`    |
+| RETAIL_CATALOG_PERSISTENCE_ENDPOINT        | Database endpoint URL                                           | `""`           |
+| RETAIL_CATALOG_PERSISTENCE_DB_NAME         | Database name                                                   | `catalogdb`    |
+| RETAIL_CATALOG_PERSISTENCE_USER            | Database user                                                   | `catalog_user` |
+| RETAIL_CATALOG_PERSISTENCE_PASSWORD        | Database password                                               | `""`           |
+| RETAIL_CATALOG_PERSISTENCE_CONNECT_TIMEOUT | Database connection timeout in seconds                          | `5`            |
 
 ## Running
 

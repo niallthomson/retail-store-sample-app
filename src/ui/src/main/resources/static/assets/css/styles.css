@@ -16,6 +16,10 @@
   line-height: 1.5;
 }
 
+.message-text p {
+  margin-bottom: 1rem;
+}
+
 /* Code blocks */
 .message-text pre {
   background-color: #f8f9fa;

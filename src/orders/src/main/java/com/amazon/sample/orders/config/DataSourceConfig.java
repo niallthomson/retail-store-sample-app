@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ConditionalOnProperty(
-  prefix = "retail.orders.persistence",
+  prefix = DatabaseProperties.PREFIX,
   name = "provider",
   havingValue = "postgres"
 )

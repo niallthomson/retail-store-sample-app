@@ -49,7 +49,7 @@ func TestMain(m *testing.M) {
 	dbConfig = config.DatabaseConfiguration{
 		Type:           "mysql",
 		Endpoint:       endpoint,
-		Name:           "sampledb",
+		Name:           "catalogdb",
 		User:           "catalog_user",
 		Password:       "unittest123",
 		ConnectTimeout: 5,
@@ -99,7 +99,7 @@ func prepareContainer(ctx context.Context) (testcontainers.Container, string, er
 		Env: map[string]string{
 			"MYSQL_ROOT_PASSWORD":        "unittest123",
 			"MYSQL_ALLOW_EMPTY_PASSWORD": "true",
-			"MYSQL_DATABASE":             "sampledb",
+			"MYSQL_DATABASE":             "catalogdb",
 			"MYSQL_USER":                 "catalog_user",
 			"MYSQL_PASSWORD":             "unittest123",
 		},

@@ -7,10 +7,12 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.validation.annotation.Validated;
 
 @Validated
-@ConfigurationProperties(prefix = "retail.orders.persistence")
+@ConfigurationProperties(prefix = DatabaseProperties.PREFIX)
 @Getter
 @Setter
 public class DatabaseProperties {
+
+  public static final String PREFIX = "retail.orders.persistence";
 
   @NotEmpty
   private String endpoint;

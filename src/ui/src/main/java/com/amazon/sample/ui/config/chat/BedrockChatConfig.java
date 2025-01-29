@@ -22,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.bedrock.converse.BedrockProxyChatModel;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.model.function.FunctionCallingOptions;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,24 +31,31 @@ import software.amazon.awssdk.regions.Region;
 
 @Configuration
 @Slf4j
+@ConditionalOnBean(ChatProperties.class)
 @ConditionalOnProperty(
-  prefix = "retail.ui.chat",
+  prefix = ChatProperties.PREFIX,
   name = "provider",
   havingValue = "bedrock"
 )
 public class BedrockChatConfig {
 
-  @Value("${retail.ui.chat.bedrock.region}")
-  private String region;
-
   @Bean
-  public ChatClient chatClient(FunctionCallingOptions options) {
+  public ChatClient chatClient(
+    ChatProperties properties,
+    BedrockChatProperties bedrockProperties
+  ) {
     log.warn("Creating Amazon Bedrock chat client");
+
+    var modelOptions = FunctionCallingOptions.builder()
+      .model(properties.getModel())
+      .maxTokens(properties.getMaxTokens())
+      .temperature(properties.getTemperature())
+      .build();
 
     var chatModel = BedrockProxyChatModel.builder()
       .withCredentialsProvider(DefaultCredentialsProvider.create())
-      .withRegion(Region.of(this.region))
-      .withDefaultOptions(options)
+      .withRegion(Region.of(bedrockProperties.getRegion()))
+      .withDefaultOptions(modelOptions)
       .build();
 
     return ChatClient.create(chatModel);

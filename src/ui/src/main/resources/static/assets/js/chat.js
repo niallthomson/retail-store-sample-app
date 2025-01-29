@@ -197,6 +197,10 @@ const ChatMessageHandler = {
 
   async processResponse(message, loadingDiv) {
     const response = await this.fetchBotResponse(message);
+
+    if (response.status !== 200) {
+      throw new Error("Error fetching bot response");
+    }
     const reader = response.body.getReader();
     const decoder = new TextDecoder();
     let runningText = "";

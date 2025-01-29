@@ -12,7 +12,7 @@
       "description": "PostgreSQL database endpoint for order persistence"
     },
     {
-      "name": "retail.orders.persistence.postgres.name",
+      "name": "retail.orders.persistence.postgres.dbname",
       "type": "java.lang.String",
       "description": "PostgreSQL database name"
     },

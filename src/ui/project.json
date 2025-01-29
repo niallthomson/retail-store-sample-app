@@ -46,7 +46,21 @@
         "command": "./mvnw spring-boot:run"
       }
     },
-    "helm": {}
+    "helm": {},
+    "compose:up": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "src/ui",
+        "command": "docker compose up --build --detach"
+      }
+    },
+    "compose:down": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "src/ui",
+        "command": "docker compose down"
+      }
+    }
   },
   "tags": ["service", "chart"]
 }

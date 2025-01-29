@@ -19,7 +19,7 @@ retail:
       provider: "in-memory"
       postgres:
         endpoint:
-        name:
+        dbname:
         username:
         password:
     messaging:
