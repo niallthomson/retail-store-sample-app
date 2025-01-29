@@ -1,7 +1,5 @@
 services:
   ui:
-    ports:
-      - 8888:8080
     environment:
       - RETAIL_UI_ENDPOINTS_CATALOG=http://catalog:8080
       - RETAIL_UI_ENDPOINTS_CARTS=http://carts:8080

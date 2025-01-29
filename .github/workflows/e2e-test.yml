@@ -22,6 +22,27 @@ jobs:
       - name: Compose up
         shell: devenv shell bash -- -e {0}
         run: |
+          yarn nx compose:up ui
+          sleep 60
+      - name: Test
+        shell: devenv shell bash -- -e {0}
+        run: |
+          CYPRESS_BASE_URL='http://localhost:8888' yarn nx execute e2e
+      - name: Compose down
+        shell: devenv shell bash -- -e {0}
+        run: |
+          yarn nx compose:down ui
+
+  docker-multi:
+    name: Docker E2E Tests (Multi)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: "Setup Env"
+        uses: ./.github/actions/setup-env
+      - name: Compose up
+        shell: devenv shell bash -- -e {0}
+        run: |
           DB_PASSWORD='test123' yarn nx compose:up
           sleep 60
       - name: Test
