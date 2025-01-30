@@ -830,7 +830,7 @@
   dependencies:
     "@opentelemetry/api" "^1.3.0"
 
-"@opentelemetry/api@^1.3.0", "@opentelemetry/api@^1.4.1":
+"@opentelemetry/api@^1.3.0", "@opentelemetry/api@^1.9.0":
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/@opentelemetry/api/-/api-1.9.0.tgz#d03eba68273dc0f7509e2a3d5cba21eae10379fe"
   integrity sha512-3giAOQvZiH5F9bMlMiv8+GSPMeqg0dbaeo58/0SlA9sxSqZhnUtxzX9/2FzyhS9sWQf5S0GJE0AKBrFqjpeYcg==
@@ -1025,13 +1025,12 @@
     "@opentelemetry/sdk-trace-base" "1.30.1"
     "@opentelemetry/semantic-conventions" "1.28.0"
 
-"@opentelemetry/host-metrics@^0.32.2":
-  version "0.32.2"
-  resolved "https://registry.yarnpkg.com/@opentelemetry/host-metrics/-/host-metrics-0.32.2.tgz#3ed80b525b36baf9cfb02a8fee87174accb04aa1"
-  integrity sha512-zrnls0CWMAYEUHQbdplY0M6v3L/cgEoiwpjAnHAaG7M3ICs7K4/Hms1UlVMDydEvNDkQilx63scpDcE1/M5V4A==
+"@opentelemetry/host-metrics@^0.35.4":
+  version "0.35.5"
+  resolved "https://registry.yarnpkg.com/@opentelemetry/host-metrics/-/host-metrics-0.35.5.tgz#1bb7453558b2623c8331d0fea5b7766c995a68f1"
+  integrity sha512-Zf9Cjl7H6JalspnK5KD1+LLKSVecSinouVctNmUxRy+WP+20KwHq+qg4hADllkEmJ99MZByLLmEmzrr7s92V6g==
   dependencies:
-    "@opentelemetry/sdk-metrics" "^1.8.0"
-    systeminformation "^5.0.0"
+    systeminformation "5.23.8"
 
 "@opentelemetry/id-generator-aws-xray@^1.2.2":
   version "1.2.2"
@@ -1505,7 +1504,7 @@
     "@opentelemetry/core" "1.30.1"
     "@opentelemetry/resources" "1.30.1"
 
-"@opentelemetry/sdk-metrics@1.30.1", "@opentelemetry/sdk-metrics@^1.8.0":
+"@opentelemetry/sdk-metrics@1.30.1":
   version "1.30.1"
   resolved "https://registry.yarnpkg.com/@opentelemetry/sdk-metrics/-/sdk-metrics-1.30.1.tgz#70e2bcd275b9df6e7e925e3fe53cfe71329b5fc8"
   integrity sha512-q9zcZ0Okl8jRgmy7eNW3Ku1XSgg3sDLa5evHZpCwjspw7E8Is4K/haRPDJrBcX3YSn/Y7gUvFnByNYEKQNbNog==
@@ -5190,14 +5189,14 @@ neo-async@^2.6.2:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
-nestjs-otel@^5.1.5:
-  version "5.1.5"
-  resolved "https://registry.yarnpkg.com/nestjs-otel/-/nestjs-otel-5.1.5.tgz#fef81da74d765ca012ee25cbfeb4ffd9fb8c634b"
-  integrity sha512-4u87aSy/GpbwuYvb5OAm0Zk3CP/q9QATI2bb9DQNpLYC5uYsqNkLHL3AdLBMVueNIMqp8rZui67XW0WTM8rr6g==
+nestjs-otel@^6.0.0:
+  version "6.1.2"
+  resolved "https://registry.yarnpkg.com/nestjs-otel/-/nestjs-otel-6.1.2.tgz#eef92d9a2ea2c71c90602193451387f0465e05f5"
+  integrity sha512-Xs/6/3ypf8ujijM0h7lO/3kGjev1cP19FcdOw4gUc71owBu3ktf0k3BXvo0lxb/vP+37j9Ljl6lf2cJtwJ9h5A==
   dependencies:
-    "@opentelemetry/api" "^1.4.1"
-    "@opentelemetry/host-metrics" "^0.32.2"
-    response-time "^2.3.2"
+    "@opentelemetry/api" "^1.9.0"
+    "@opentelemetry/host-metrics" "^0.35.4"
+    response-time "^2.3.3"
 
 node-abort-controller@^3.0.1:
   version "3.1.1"
@@ -5879,7 +5878,7 @@ resolve@^1.20.0, resolve@^1.22.8:
     path-parse "^1.0.7"
     supports-preserve-symlinks-flag "^1.0.0"
 
-response-time@^2.3.2:
+response-time@^2.3.3:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/response-time/-/response-time-2.3.3.tgz#cfec433ea1b286943a2b48b01c67a051a536b130"
   integrity sha512-SsjjOPHl/FfrTQNgmc5oen8Hr1Jxpn6LlHNXxCIFdYMHuK1kMeYMobb9XN3mvxaGQm3dbegqYFMX4+GDORfbWg==
@@ -6374,10 +6373,10 @@ synckit@^0.9.1:
     "@pkgr/core" "^0.1.0"
     tslib "^2.6.2"
 
-systeminformation@^5.0.0:
-  version "5.25.11"
-  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-5.25.11.tgz#7d47a14dafbc9cf6c21bc02d19a2121a8c770d88"
-  integrity sha512-jI01fn/t47rrLTQB0FTlMCC+5dYx8o0RRF+R4BPiUNsvg5OdY0s9DKMFmJGrx5SwMZQ4cag0Gl6v8oycso9b/g==
+systeminformation@5.23.8:
+  version "5.23.8"
+  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-5.23.8.tgz#b8efa73b36221cbcb432e3fe83dc1878a43f986a"
+  integrity sha512-Osd24mNKe6jr/YoXLLK3k8TMdzaxDffhpCxgkfgBHcapykIkd50HXThM3TCEuHO2pPuCsSx2ms/SunqhU5MmsQ==
 
 tapable@^2.1.1, tapable@^2.2.0, tapable@^2.2.1:
   version "2.2.1"
