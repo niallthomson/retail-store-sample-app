@@ -1,0 +1,31 @@
+name: Execute component CI
+
+on:
+  workflow_call:
+    inputs:
+      component:
+        type: string
+        default: "-"
+
+permissions:
+  contents: read
+
+jobs:
+  run-tests:
+    name: CI
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: "Setup Docker"
+        id: docker
+        uses: ./.github/actions/setup-docker
+      - name: "Setup Env"
+        uses: ./.github/actions/setup-env
+      - name: Test
+        shell: devenv shell bash -- -e {0}
+        run: |
+          yarn nx run-many --targets=lint,test:integration,test,build --projects=${{ inputs.component }}
+      - name: Build containers
+        shell: devenv shell bash -- -e {0}
+        run: |
+          yarn nx container ${{ inputs.component }} --platforms linux/amd64,linux/arm64 --builder ${{ steps.docker.outputs.builder }} --load false
