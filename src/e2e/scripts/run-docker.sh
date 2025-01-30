@@ -73,4 +73,6 @@ setup_colors
 
 cd $script_dir/../
 
-docker run -i --rm --network $network -v $PWD:/e2e --env CYPRESS_BASE_URL="${args[0]}" -w /e2e cypress/included:13.17.0
+docker build -t retail-store-sample-e2e:run --pull --quiet -f Dockerfile.run .
+
+docker run -i --rm --network $network -v $PWD:/e2e --env CYPRESS_BASE_URL="${args[0]}" -w /e2e retail-store-sample-e2e:run

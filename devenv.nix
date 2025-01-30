@@ -18,7 +18,7 @@
 
   languages.javascript = {
     enable = true;
-    package = pkgs.nodejs_20;
+    package = pkgs.nodejs_22;
   };
   languages.typescript = {
     enable = true;

@@ -7,7 +7,7 @@ script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
 usage() {
   cat <<EOF
-Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-v] [-q] [-p] [-a] [--cnb] [-s service] [-r repository] [-t tag]
+Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-v] [-q] [-t target] [--vu users] [-d duration] [-c]
 
 Builds container images for one or more services.
 
@@ -16,10 +16,10 @@ Available options:
 -h, --help       Print this help and exit
 -v, --verbose    Print script debug info
 -q, --quiet      Reduce log output
--t, --target     Target URL to use for the test (default: http://localhost:8888)
---vu             Number of virtual users to run (default: 1)
+-t, --target     Target URL to use for the test  (default: http://localhost:8888)
+--vu             Number of virtual users to run  (default: 1)
 -d, --duration   Duration of the test in seconds (default: forever)
--c, --container  Run the load test in a container (default: directly invokes npm)
+-n, --network   Docker network to use            (default: bridge)
 
 EOF
   exit
@@ -57,6 +57,8 @@ parse_params() {
   target='http://localhost:8888'
   duration='0'
   vus='1'
+  network='bridge'
+  output=''
 
   while :; do
     case "${1-}" in
@@ -64,13 +66,20 @@ parse_params() {
     -v | --verbose) set -x ;;
     --no-color) NO_COLOR=1 ;;
     -q | --quiet) quiet=true ;;
-    -c | --container) container=true ;;
+    -n | --network)
+      network="${2-}"
+      shift
+      ;;
     -t | --target)
       target="${2-}"
       shift
       ;;
     -d | --duration)
       duration="${2-}"
+      shift
+      ;;
+    -o | --output)
+      output="${2-}"
       shift
       ;;
     --vu)
@@ -93,16 +102,7 @@ parse_params() {
 parse_params "$@"
 setup_colors
 
-msg "Performing pre-check on ${BLUE}$target/home${NOFORMAT}..."
-
-status_code=$(curl --write-out '%{http_code}' --silent --output /dev/null $target/home)
-
-if [[ "$status_code" -ne 200 ]] ; then
-  msg "${RED}Error:${NOFORMAT} Target $target returned HTTP code $status_code, are you sure its up?"
-  exit 1
-fi
-
-msg "Pre-check ${GREEN}Passed!${NOFORMAT}\n"
+cd $script_dir/../
 
 quiet_args=''
 
@@ -112,16 +112,16 @@ fi
 
 overrides_args="{\"config\": { \"phases\": [{ \"duration\": $duration, \"arrivalRate\": $vus }] } }"
 
-if [ "$container" = true ]; then
-  msg "Running in ${BLUE}container mode${NOFORMAT}..."
+docker build -t retail-store-sample-loadgen:run --pull --quiet -f Dockerfile.run .
 
-  docker run --rm -v $script_dir/../:/scripts \
-    artilleryio/artillery:2.0.0-31 \
-    run -t $target $quiet_args --overrides "$overrides_args" /scripts/scenario.yml 
-else
-  msg "Running in ${BLUE}default mode${NOFORMAT}..."
+container_name="retail-store-loadgen-$(date +%s)"
 
-  npm run generator -- -t $target $quiet_args --overrides "$overrides_args"
+docker run --name "$container_name" --network $network -v $PWD:/scripts \
+  retail-store-sample-loadgen:run \
+  run -t $target $quiet_args --output /tmp/output.json --overrides "$overrides_args" /scripts/scenario.yml
+
+if [ -n "$output" ]; then
+  docker cp "$container_name:/tmp/output.json" "$output"
 fi
 
-msg 'Done!'
+docker rm "$container_name"

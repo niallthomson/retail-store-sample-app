@@ -28,6 +28,18 @@ jobs:
         shell: devenv shell bash -- -e {0}
         run: |
           CYPRESS_BASE_URL='http://localhost:8888' yarn nx execute e2e
+      - name: Load Generator
+        shell: devenv shell bash -- -e {0}
+        working-directory: src/load-generator
+        run: |
+          bash scripts/run-docker.sh -n docker-compose_default -t 'http://ui:8080' -d 30 -o /tmp/test.json
+
+          result=$(jq '.aggregate.counters."vusers.failed" == 0' /tmp/test.json)
+
+          if [ "$result" = "false" ]; then
+            echo "Check failed: vusers.failed is not 0"
+            exit 1
+          fi
       - name: Compose down
         shell: devenv shell bash -- -e {0}
         run: |
