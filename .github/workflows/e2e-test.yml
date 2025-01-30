@@ -30,8 +30,8 @@ jobs:
           CYPRESS_BASE_URL='http://localhost:8888' yarn nx execute e2e
       - name: Load Generator
         shell: devenv shell bash -- -e {0}
-        working-directory: src/load-generator
         run: |
+          cd src/load-generator
           bash scripts/run-docker.sh -n docker-compose_default -t 'http://ui:8080' -d 30 -o /tmp/test.json
 
           result=$(jq '.aggregate.counters."vusers.failed" == 0' /tmp/test.json)
