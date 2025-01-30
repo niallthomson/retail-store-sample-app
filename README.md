@@ -1,10 +1,22 @@
-<div style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('docs/images/hero.png'); background-size: cover; background-position: center; height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 2em;">
-    <h1 style="color: white; text-align: center; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">AWS Containers Retail Sample</h1>
-    <div style="margin-top: 1em;">
-    
-  [![Stars](https://img.shields.io/github/stars/aws-samples/eks-workshop-v2)](LICENSE) 
-  [![License](https://img.shields.io/github/license/aws-samples/eks-workshop-v2)](LICENSE)
-    </div>
+<div align="center">
+  <a href="https://eksworkshop.com" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <img width="160" src="docs/images/containers.png" alt="AWS containers">
+    </picture>
+  </a>
+  
+  <br/>
+
+  <div align="center">
+
+[![Stars](https://img.shields.io/github/stars/aws-containers/retail-store-sample-app)](Stars)
+[![License](https://img.shields.io/github/license/aws-containers/retail-store-sample-app)](LICENSE)
+
+  </div>
+
+  <strong>
+  <h2>AWS Containers Retail Sample</h2>
+  </strong>
 </div>
 
 This is a sample application designed to illustrate various concepts related to containers on AWS. It presents a sample retail store application including a product catalog, shopping cart and checkout.
