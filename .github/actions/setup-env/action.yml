@@ -3,8 +3,8 @@ description: "Install component for devenv and nx to work"
 runs:
   using: "composite"
   steps:
-    - uses: cachix/install-nix-action@v26
-    - uses: cachix/cachix-action@v14
+    - uses: cachix/install-nix-action@v30
+    - uses: cachix/cachix-action@v15
       with:
         name: devenv
     - name: Install devenv.sh
