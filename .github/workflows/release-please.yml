@@ -32,8 +32,16 @@ jobs:
         with:
           registry-type: public
 
+      - uses: actions/checkout@v4
+        if: ${{ steps.release.outputs.release_created }}
+
+      - name: "Setup Env"
+        if: ${{ steps.release.outputs.release_created }}
+        uses: ./.github/actions/setup-env
+
       - name: Upload Release Artifact
         if: ${{ steps.release.outputs.release_created }}
+        shell: devenv shell bash -- -e {0}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           IMAGE_TAG: ${{ steps.release.outputs.tag_name }}
