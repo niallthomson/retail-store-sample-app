@@ -44,9 +44,11 @@ jobs:
         shell: devenv shell bash -- -e {0}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          IMAGE_TAG: ${{ steps.release.outputs.tag_name }}
+          TAG_NAME: ${{ steps.release.outputs.tag_name }}
           AWS_ECR_REPOSITORY: ${{ secrets.AWS_ECR_REPOSITORY }}
         run: |
+          export IMAGE_TAG=${TAG_NAME#v}
+
           yarn nx run-many -t build --projects=tag:service --parallel=1
 
           yarn nx run-many -t container --projects=tag:service --tags ${AWS_ECR_REPOSITORY}/retail-store-sample-{projectName}:${IMAGE_TAG} --push true
