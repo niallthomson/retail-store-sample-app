@@ -18,37 +18,62 @@
 
 package com.amazon.sample.ui.web;
 
+import com.amazon.sample.ui.util.ToggleHealthIndicator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/utility")
 public class UtilityController {
 
-    @GetMapping("/stress/{iterations}")
-    @ResponseBody
-    public double stress(@PathVariable int iterations) {
-        return monteCarloPi(iterations);
-    }
+  private static final double MONTE_CARLO_CONSTANT = 4.0;
 
-    private double monteCarloPi(int iterations) {
-        int inside = 0;
-        for (int i = 0; i < iterations; i++) {
-            double x = Math.random();
-            double y = Math.random();
-            if (Math.sqrt(x * x + y * y) < 1.0) {
-                inside++;
-            }
-        }
-        return 4.0 * inside / iterations;
-    }
+  @Autowired
+  private ToggleHealthIndicator healthIndicator;
 
-    @GetMapping("/status/{code}")
-    public ResponseEntity<String> status(@PathVariable int code) {
-        return ResponseEntity.status(code).body("OK");
+  @GetMapping("/stress/{iterations}")
+  @ResponseBody
+  public double stress(@PathVariable int iterations) {
+    return monteCarloPi(iterations);
+  }
+
+  private double monteCarloPi(int iterations) {
+    int inside = 0;
+    for (int i = 0; i < iterations; i++) {
+      double x = Math.random();
+      double y = Math.random();
+      if (Math.sqrt(x * x + y * y) < 1.0) {
+        inside++;
+      }
     }
+    return (MONTE_CARLO_CONSTANT * inside) / iterations;
+  }
+
+  @GetMapping("/status/{code}")
+  public ResponseEntity<String> status(@PathVariable int code) {
+    return ResponseEntity.status(code).body("OK");
+  }
+
+  @PostMapping("/health/up")
+  public ResponseEntity<String> healthUp() {
+    return this.toggleHealth(true);
+  }
+
+  @PostMapping("/health/down")
+  public ResponseEntity<String> healthDown() {
+    return this.toggleHealth(false);
+  }
+
+  private ResponseEntity<String> toggleHealth(@RequestParam boolean healthy) {
+    healthIndicator.setHealth(healthy);
+    String status = healthy ? "UP" : "DOWN";
+    return ResponseEntity.ok("Health status set to: " + status);
+  }
 }
