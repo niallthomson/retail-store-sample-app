@@ -40,8 +40,8 @@ runs:
 
         bash scripts/compose-dist.sh
 
-        gh release upload ${TAG_NAME} ./dist/docker-compose/docker-compose.yaml
+        gh release upload ${TAG_NAME} ./dist/docker-compose/docker-compose.yaml --clobber
 
         bash scripts/kubernetes-dist.sh
 
-        gh release upload ${TAG_NAME} ./dist/kubernetes/kubernetes.yaml
+        gh release upload ${TAG_NAME} ./dist/kubernetes/kubernetes.yaml --clobber
