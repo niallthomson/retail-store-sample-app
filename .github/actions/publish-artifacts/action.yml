@@ -13,6 +13,9 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: "Setup Docker"
+      uses: ./.github/actions/setup-docker
+
     - name: "Setup Env"
       uses: ./.github/actions/setup-env
 
@@ -28,10 +31,10 @@ runs:
         yarn nx run-many -t build --projects=tag:service --parallel=1
 
         # Ensure all containers build
-        yarn nx run-many -t container --projects=tag:service --tags ${AWS_ECR_REPOSITORY}/retail-store-sample-{projectName}:${IMAGE_TAG} --push true
+        yarn nx run-many -t container --projects=tag:service --tags ${AWS_ECR_REPOSITORY}/retail-store-sample-{projectName}:${IMAGE_TAG} --configuration publish --push false
 
         # Then push
-        yarn nx run-many -t container --projects=tag:service --tags ${AWS_ECR_REPOSITORY}/retail-store-sample-{projectName}:${IMAGE_TAG}
+        yarn nx run-many -t container --projects=tag:service --tags ${AWS_ECR_REPOSITORY}/retail-store-sample-{projectName}:${IMAGE_TAG} --configuration publish
 
         yarn nx run-many -t helm --projects=tag:service --remote oci://${AWS_ECR_REPOSITORY} --push
 
