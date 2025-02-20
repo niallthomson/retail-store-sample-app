@@ -32,6 +32,11 @@ jobs:
         with:
           registry-type: public
 
+      - uses: actions/checkout@v4
+        if: ${{ steps.release.outputs.release_created }}
+        with:
+          ref: ${{ steps.release.outputs.tag_name }}
+
       - name: "Publish artifacts"
         if: ${{ steps.release.outputs.release_created }}
         uses: ./.github/actions/publish-artifacts

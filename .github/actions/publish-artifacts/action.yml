@@ -13,10 +13,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - uses: actions/checkout@v4
-      with:
-        ref: ${{ inputs.tag }}
-
     - name: "Setup Env"
       uses: ./.github/actions/setup-env
 
