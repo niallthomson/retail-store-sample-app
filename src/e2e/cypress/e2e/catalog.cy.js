@@ -15,7 +15,7 @@ describe("testing catalog", () => {
       .cards()
       .first()
       .find(".product-name")
-      .should("contain.text", "Audio-Illusion Spinner");
+      .should("contain.text", "Aqua Ace GT");
     catalog.cards().its("length").should("eq", 6);
   });
 
