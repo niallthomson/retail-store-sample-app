@@ -10,18 +10,18 @@ jobs:
         component: [cart, catalog, checkout, orders, ui]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - uses: actions/setup-java@v3
+      - uses: actions/setup-java@v4
         with:
           distribution: "corretto"
           java-version: "17"
 
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.10"
 
-      - uses: actions/setup-go@v3
+      - uses: actions/setup-go@v5
         with:
           go-version: "1.18"
 
@@ -42,7 +42,7 @@ jobs:
           bash oss/run.sh -s $COMPONENT_NAME
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v7
         with:
           add-path: src/**/ATTRIBUTION.md
           branch: attribution-updates-${{ matrix.component }}
