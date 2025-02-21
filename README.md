@@ -1,7 +1,7 @@
 <div align="center">
   <a href="https://eksworkshop.com" target="_blank" rel="noopener noreferrer">
     <picture>
-      <img width="160" src="docs/images/containers.png" alt="AWS containers">
+      <img width="160" src="/docs/images/containers.png" alt="AWS containers">
     </picture>
   </a>
   
