@@ -1,0 +1,35 @@
+name: Arch Test
+
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  docker:
+    name: Docker E2E Tests
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-22.04
+            arch: amd64
+          - os: ubuntu-22.04-arm
+            arch: arm64
+    steps:
+      - uses: actions/checkout@v4
+      - name: "Setup Env"
+        uses: ./.github/actions/setup-env
+      - name: Compose up
+        shell: devenv shell bash -- -e {0}
+        run: |
+          yarn nx compose:up ui
+          sleep 60
+      - name: Test
+        shell: devenv shell bash -- -e {0}
+        run: |
+          CYPRESS_BASE_URL='http://localhost:8888' yarn nx execute e2e
+      - name: Compose down
+        shell: devenv shell bash -- -e {0}
+        run: |
+          yarn nx compose:down ui
