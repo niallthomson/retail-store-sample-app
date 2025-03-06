@@ -21,6 +21,8 @@ jobs:
             arch: arm64
     steps:
       - uses: actions/checkout@v4
+      - name: "Setup Docker"
+        uses: ./.github/actions/setup-docker
       - name: "Setup Env"
         uses: ./.github/actions/setup-env
       - name: "Get AWS credentials"
