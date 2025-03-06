@@ -26,7 +26,6 @@ jobs:
       - name: "Setup Env"
         uses: ./.github/actions/setup-env
       - name: "Get AWS credentials"
-        if: ${{ steps.release.outputs.release_created }}
         uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
@@ -35,7 +34,6 @@ jobs:
 
       - name: "Login to Amazon ECR Public"
         id: login-ecr-public
-        if: ${{ steps.release.outputs.release_created }}
         uses: aws-actions/amazon-ecr-login@v2
         with:
           registry-type: public
