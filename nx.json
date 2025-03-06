@@ -45,6 +45,7 @@
     "container": {
       "executor": "@nx-tools/nx-container:build",
       "cache": true,
+      "dependsOn": [],
       "options": {
         "context": "{projectRoot}",
         "tags": ["aws-containers/retail-store-sample-{projectName}"]
