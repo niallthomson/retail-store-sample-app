@@ -41,5 +41,6 @@ jobs:
         shell: devenv shell bash -- -e {0}
         env:
           TARGET_ARCH: ${{ matrix.arch }}
+          AWS_ECR_REPOSITORY: ${{ inputs.ecr-repository }}
         run: |
-          yarn nx container catalog --configuration publish --tags ${AWS_ECR_REPOSITORY}/retail-store-sample-{projectName}:arch1-${TARGET_ARCH}
+          yarn nx container catalog --push true --tags ${AWS_ECR_REPOSITORY}/retail-store-sample-{projectName}:arch1-${TARGET_ARCH}
