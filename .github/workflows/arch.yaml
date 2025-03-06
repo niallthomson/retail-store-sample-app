@@ -44,7 +44,11 @@ jobs:
           TARGET_ARCH: ${{ matrix.arch }}
           AWS_ECR_REPOSITORY: ${{ secrets.AWS_ECR_REPOSITORY }}
         run: |
-          yarn nx container catalog --push true --tags ${AWS_ECR_REPOSITORY}/retail-store-sample-{projectName}:arch4-${TARGET_ARCH}
+          # Build first to prevent partial container set push
+          yarn nx run-many -t container --projects=tag:service --tags ${AWS_ECR_REPOSITORY}/retail-store-sample-{projectName}:arch4-${TARGET_ARCH}
+
+          # Build first to prevent partial container set push
+          yarn nx run-many -t container --push true --projects=tag:service --tags ${AWS_ECR_REPOSITORY}/retail-store-sample-{projectName}:arch4-${TARGET_ARCH}
 
   manifest:
     needs: docker
