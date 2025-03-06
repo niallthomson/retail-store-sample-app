@@ -44,4 +44,29 @@ jobs:
           TARGET_ARCH: ${{ matrix.arch }}
           AWS_ECR_REPOSITORY: ${{ secrets.AWS_ECR_REPOSITORY }}
         run: |
-          yarn nx container catalog --push true --tags ${AWS_ECR_REPOSITORY}/retail-store-sample-{projectName}:arch1-${TARGET_ARCH}
+          yarn nx container catalog --push true --tags ${AWS_ECR_REPOSITORY}/retail-store-sample-{projectName}:arch3-${TARGET_ARCH}
+
+  manifest:
+    needs: docker
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: "Setup Env"
+        uses: ./.github/actions/setup-env
+      - name: "Get AWS credentials"
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: us-east-1
+          role-session-name: GithubActionsSession
+
+      - name: "Login to Amazon ECR Public"
+        id: login-ecr-public
+        uses: aws-actions/amazon-ecr-login@v2
+        with:
+          registry-type: public
+
+      - name: Push manifests
+        shell: devenv shell bash -- -e {0}
+        run: |
+          yarn nx run-many -t manifst --projects=tag:service --args="--repository=public.ecr.aws/t0t9x2q2/retail-store-sample-{projectName},--tag=arch3"
