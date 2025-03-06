@@ -3,7 +3,10 @@ name: Arch Test
 on:
   workflow_dispatch:
 
-permissions: {}
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write
 
 jobs:
   docker:
@@ -20,16 +23,23 @@ jobs:
       - uses: actions/checkout@v4
       - name: "Setup Env"
         uses: ./.github/actions/setup-env
-      - name: Compose up
-        shell: devenv shell bash -- -e {0}
-        run: |
-          yarn nx compose:up ui
-          sleep 60
+      - name: "Get AWS credentials"
+        if: ${{ steps.release.outputs.release_created }}
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: us-east-1
+          role-session-name: GithubActionsSession
+
+      - name: "Login to Amazon ECR Public"
+        id: login-ecr-public
+        if: ${{ steps.release.outputs.release_created }}
+        uses: aws-actions/amazon-ecr-login@v2
+        with:
+          registry-type: public
       - name: Test
         shell: devenv shell bash -- -e {0}
+        env:
+          TARGET_ARCH: ${{ matrix.arch }}
         run: |
-          CYPRESS_BASE_URL='http://localhost:8888' yarn nx execute e2e
-      - name: Compose down
-        shell: devenv shell bash -- -e {0}
-        run: |
-          yarn nx compose:down ui
+          yarn nx container catalog --configuration publish --tags ${AWS_ECR_REPOSITORY}/retail-store-sample-{projectName}:arch1-${TARGET_ARCH}
