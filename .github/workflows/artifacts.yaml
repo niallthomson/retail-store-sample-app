@@ -32,7 +32,7 @@ jobs:
       - name: "Setup Env"
         uses: ./.github/actions/setup-env
       - name: "Get AWS credentials"
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: us-east-1
@@ -72,7 +72,7 @@ jobs:
       - name: "Setup Env"
         uses: ./.github/actions/setup-env
       - name: "Get AWS credentials"
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: us-east-1
